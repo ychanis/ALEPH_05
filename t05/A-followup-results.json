@@ -1,0 +1,47 @@
+{
+  "executed_at": "2026-10-02T08:14:28.622Z",
+  "passed": 10,
+  "total": 10,
+  "results": [
+    {
+      "id": "CSV-01",
+      "status": "PASS"
+    },
+    {
+      "id": "CSV-02",
+      "status": "PASS"
+    },
+    {
+      "id": "CSV-03",
+      "status": "PASS"
+    },
+    {
+      "id": "CSV-04",
+      "status": "PASS"
+    },
+    {
+      "id": "CSV-05",
+      "status": "PASS"
+    },
+    {
+      "id": "CSV-06",
+      "status": "PASS"
+    },
+    {
+      "id": "CSV-07",
+      "status": "PASS"
+    },
+    {
+      "id": "CSV-08",
+      "status": "PASS"
+    },
+    {
+      "id": "CSV-09",
+      "status": "PASS"
+    },
+    {
+      "id": "CSV-10",
+      "status": "PASS"
+    }
+  ]
+}

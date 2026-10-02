@@ -1,0 +1,18 @@
+{
+  "by": "AI A follow-up",
+  "scope": "DOM mocks; real browser download and full build not verified",
+  "results": [
+    {
+      "case": "live",
+      "status": "PASS"
+    },
+    {
+      "case": "test",
+      "status": "PASS"
+    },
+    {
+      "case": "empty",
+      "status": "PASS"
+    }
+  ]
+}
