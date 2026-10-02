@@ -1,0 +1,63 @@
+{
+  "feature": "일별 기록 CSV 내려받기",
+  "fixed_at": "2026-10-02T07:29:43.162760+00:00",
+  "limits": {
+    "minutes_per_ai": 30,
+    "user_requests_per_ai": 10,
+    "counting": "AI 시작 요청부터 종료 인계까지 사용자 메시지 1개=1회. 내부 도구 호출은 제외. A/B 동일."
+  },
+  "tests": [
+    {
+      "id": "CSV-01",
+      "input": "빈 기록, live",
+      "expected": "파일 없음; 내려받을 기록이 없어요."
+    },
+    {
+      "id": "CSV-02",
+      "input": "기온 16.5 기록 1건, live",
+      "expected": "날짜·값·단위·출처·두 시각을 포함한 헤더와 데이터 1행"
+    },
+    {
+      "id": "CSV-03",
+      "input": "한글 출처 서울 기온",
+      "expected": "UTF-8 BOM으로 시작하며 한글 원문 유지"
+    },
+    {
+      "id": "CSV-04",
+      "input": "source_name=서울,기온",
+      "expected": "쉼표가 있는 필드를 큰따옴표로 감싸 한 셀 유지"
+    },
+    {
+      "id": "CSV-05",
+      "input": "source_name=서울 \"기온\"",
+      "expected": "필드 안 큰따옴표를 두 개로 처리"
+    },
+    {
+      "id": "CSV-06",
+      "input": "source_name=서울\\n기온",
+      "expected": "줄바꿈이 있는 필드를 큰따옴표로 감싸 한 셀 유지"
+    },
+    {
+      "id": "CSV-07",
+      "input": "source_time=null, normalized_value=0",
+      "expected": "출처 시각은 빈 셀; 0은 숫자 0으로 유지"
+    },
+    {
+      "id": "CSV-08",
+      "input": "기온 -2.75, 두 날짜 입력 역순",
+      "expected": "날짜 오름차순; -2.75 유지; 입력 배열 변경 없음"
+    },
+    {
+      "id": "CSV-09",
+      "input": "같은 기록으로 live / test 내보내기",
+      "expected": "각각 seoul-daily-live.csv / seoul-daily-test.csv; 데이터 종류 실제 / 합성 구분"
+    },
+    {
+      "id": "CSV-10",
+      "input": "source_name==1+1",
+      "expected": "출처 셀 앞 작은따옴표로 수식 실행 방지"
+    }
+  ],
+  "initial_request": "저장소의 과제 4 정보판에 일별 기록 CSV 내려받기를 완성하세요. t05/frozen.json의 검사 10개와 상한을 지키고 같은 검사를 실행하세요. 실제/합성 기록을 구분하고 기존 저장·조회·실패 처리와 과제 4 공식 검사를 변경하지 마세요. 진행 기록과 7항목 인수인계를 남기세요.",
+  "scope": "A: CSV 변환과 검사. B: 버튼 연결, 다운로드와 빈 기록 안내, 같은 검사 재실행과 화면 확인."
+}
